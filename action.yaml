@@ -50,7 +50,7 @@ runs:
         mask-password: 'true'
 
     - name: Get git repository informations
-      uses: <ORG NAME>/github-actions-git-informations@main
+      uses: LeriandStudio/github-actions-git-informations@main
 
     - name: Run Trivy vulnerability scanner in repo mode
       uses: aquasecurity/trivy-action@master
@@ -83,7 +83,7 @@ runs:
         exit-code: '1'
 
     - name: Kustomize step
-      uses: <ORG NAME>/github-actions-kustomize-argocd-manifests@main
+      uses: LeriandStudio/github-actions-kustomize-argocd-manifests@main
       with:
         app-name: ${{ inputs.app-name }}
         app-registry: ${{ steps.login-ecr.outputs.registry }}
@@ -94,7 +94,7 @@ runs:
 
     - name: ArgoCD Sync - DEV
       if: ${{ env.GITOPS_BRANCH == 'develop' }}
-      uses: <ORG NAME>/github-actions-argocd-sync@main
+      uses: LeriandStudio/github-actions-argocd-sync@main
       with:
         app-name: ${{ inputs.app-name }}
         env-prefix: 'dev'
