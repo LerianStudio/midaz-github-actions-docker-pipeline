@@ -1,12 +1,13 @@
-# GitHub Actions GO pipeline template
+# Midaz GitHub Actions docker pipeline
 
-### GitHub Action: Go Lang Docker Build, AWS ECR Push and Kustomize step
+### GitHub Action: Docker Build, AWS ECR Push and Kustomize step
 
-This GitHub Action module automates the process of building a Docker image for a Go Lang application, pushing it to an AWS container registry (such as Amazon Elastic Container Registry - ECR), and running Kustomize steps for Kubernetes deployment.
+This GitHub Action module automates the process of building a Docker image, pushing it to an AWS container registry (such as Amazon Elastic Container Registry - ECR), and running Kustomize steps for Kubernetes deployment.
 
 ## Inputs
 
 - **app-name:** 'The app name'
+- **argo-cd-sync:** 'Do you want to run the ArgoCD sync for this application in DEV environment?'
 - **argo-cd-token:** 'The ArgoCD token to sync after Kustomize step'
 - **argo-cd-url:** 'The ArgoCD URL to be used in application sync step'
 - **aws-region:** 'AWS region name to assume role'
@@ -42,6 +43,7 @@ There are no outputs for this action
             uses: <ORG NAME>/github-actions-go-pipeline-template@main
             with:
               app-name: '<to fill>'
+              argo-cd-sync: '<to fill>'
               argo-cd-token: '<to fill>'
               argo-cd-url: '<to fill>'
               aws-region: '<to fill>'
@@ -73,6 +75,7 @@ If you wants to update or make changes in module code you should use the **devel
             uses: <ORG NAME>/github-actions-go-pipeline-template@develop
             with:
               app-name: '<to fill>'
+              argo-cd-sync: '<to fill>'
               argo-cd-token: '<to fill>'
               argo-cd-url: '<to fill>'
               aws-region: '<to fill>'

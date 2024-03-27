@@ -1,9 +1,12 @@
-name: 'Go lang pipeline'
-description: 'Go Lang Docker Build, AWS ECR Push and Kustomize step'
+name: 'Docker pipeline'
+description: 'Docker Build, AWS ECR Push and Kustomize step'
 
 inputs:
   app-name:
     description: 'The app name'
+    required: true
+  argo-cd-sync:
+    description: 'Do you want to run the ArgoCD sync for this application in DEV environment?'
     required: true
   argo-cd-token:
     description: 'The ArgoCD token to sync after Kustomize step'
@@ -93,7 +96,7 @@ runs:
         k8s-manifest-repo-url: '${{ inputs.k8s-manifest-repo-url }}'
 
     - name: ArgoCD Sync - DEV
-      if: ${{ env.GITOPS_BRANCH == 'develop' }}
+      if: ${{ env.GITOPS_BRANCH == 'develop' && inputs.argo-cd-sync == true }}
       uses: LeriandStudio/github-actions-argocd-sync@main
       with:
         app-name: ${{ inputs.app-name }}
