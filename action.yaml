@@ -10,10 +10,10 @@ inputs:
     required: true
   argo-cd-token:
     description: 'The ArgoCD token to sync after Kustomize step'
-    required: true
+    required: false
   argo-cd-url:
     description: 'The ArgoCD URL to be used in application sync step'
-    required: true
+    required: false
   aws-region:
     description: 'AWS region name to assume role'
     required: true
