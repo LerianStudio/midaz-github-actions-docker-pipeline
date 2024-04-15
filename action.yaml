@@ -17,6 +17,10 @@ inputs:
   aws-region:
     description: 'AWS region name to assume role'
     required: true
+  dockerfile-name:
+    description: 'The Dockerfile name'
+    default: 'Dockerfile'
+    required: true
   k8s-manifest-repo-name:
     description: 'The name of K8S manifests repository'
     required: true
@@ -71,7 +75,7 @@ runs:
         REPOSITORY: ${{ inputs.app-name }}
         IMAGE_TAG: ${{ env.RELEASE_VERSION }}
       run: |
-        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG \
+        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f ${{ inputs.dockerfile-name }} \
           --build-arg GITHUB_USER_TOKEN=${{ inputs.service-github-token }} .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
