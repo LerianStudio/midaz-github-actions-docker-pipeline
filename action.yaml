@@ -80,6 +80,7 @@ runs:
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
     - name: Enable Image Scanning on Push
+      shell: bash
       run: |
         aws ecr put-image-scanning-configuration \
           --repository-name ${{ inputs.app-name }} \
