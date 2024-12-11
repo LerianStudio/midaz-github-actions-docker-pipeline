@@ -73,7 +73,7 @@ runs:
       env:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REPOSITORY: ${{ inputs.app-name }}
-        IMAGE_TAG: ${{ env.RELEASE_VERSION }}
+        IMAGE_TAG: mock-tag
       run: |
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f ${{ inputs.dockerfile-name }} \
           --build-arg GITHUB_USER_TOKEN=${{ inputs.service-github-token }} .
